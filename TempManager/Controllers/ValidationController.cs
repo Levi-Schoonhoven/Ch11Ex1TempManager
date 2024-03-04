@@ -8,15 +8,17 @@ namespace TempManager.Controllers
 {
     public class ValidationController : Controller
     {
-  
 
+    
         
         private ValidationResult CheckDate(object value, ValidationContext ctx) {
             Temp temp = new Temp();
+            ViewBag.SuccessMessage = TempData["SuccessMessage"];
             if (value is DateTime)
             {
                 DateTime dateToCheck = (DateTime)value;
                 if (dateToCheck == DateTime.Today) {
+                    TempData["SuccessMessage"] = "Date added successfully";
                     return ValidationResult.Success;
                 }
 
